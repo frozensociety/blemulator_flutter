@@ -1,5 +1,5 @@
 import 'package:blemulator/src/internal.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../../factory/simulated_peripheral_factory.dart';
 import '../../factory/simulation_manager_factory.dart';
@@ -10,15 +10,12 @@ void main() {
   PeripheralMtuMixin peripheralMtuMixin;
 
   setUp(() {
-     peripheralMtuMixin = SimulationManagerFactory().create()
-      ..addSimulatedPeripheral(
-          (SimulatedPeripheralBuilder()
+    peripheralMtuMixin = SimulationManagerFactory().create()
+      ..addSimulatedPeripheral((SimulatedPeripheralBuilder()
             ..isConnected = true
             ..mtu = MTU
             ..deviceId = DEVICE_ID)
-          .build()
-      );
-
+          .build());
   });
 
   test('should change MTU', () async {
@@ -37,7 +34,8 @@ void main() {
     const maxMtu = 512;
 
     //when
-    var mtu = await peripheralMtuMixin.requestMtuForDevice(DEVICE_ID, maxMtu + 1);
+    var mtu =
+        await peripheralMtuMixin.requestMtuForDevice(DEVICE_ID, maxMtu + 1);
 
     //then
     expect(mtu, maxMtu);
@@ -48,7 +46,8 @@ void main() {
     const minMtu = 23;
 
     //when
-    var mtu = await peripheralMtuMixin.requestMtuForDevice(DEVICE_ID, minMtu - 23);
+    var mtu =
+        await peripheralMtuMixin.requestMtuForDevice(DEVICE_ID, minMtu - 23);
 
     //then
     expect(mtu, minMtu);

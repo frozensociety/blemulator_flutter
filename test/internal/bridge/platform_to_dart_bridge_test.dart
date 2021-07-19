@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:blemulator/src/internal.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart' as flutter_test;
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
 
 class SimulationManagerMock extends Mock implements SimulationManager {}
 
 void main() {
-  flutter_test.TestWidgetsFlutterBinding.ensureInitialized();
+  TestWidgetsFlutterBinding.ensureInitialized();
   const DEVICE_ID = 'id123';
   const REQUESTED_MTU = 33;
   const NEGOTIATED_MTU = 24;
@@ -48,7 +47,8 @@ void main() {
           .thenAnswer((_) => Future.value(NEGOTIATED_MTU));
 
       //when
-      int negotiatedMtu = await platformToDartBridge.dispatchPlatformCall(methodCall);
+      int negotiatedMtu =
+          await platformToDartBridge.dispatchPlatformCall(methodCall);
 
       //then
       expect(negotiatedMtu, NEGOTIATED_MTU);

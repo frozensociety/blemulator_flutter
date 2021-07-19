@@ -1,8 +1,8 @@
 import 'package:blemulator/blemulator.dart';
 import 'package:blemulator/src/internal.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pedantic/pedantic.dart';
-import 'package:test/test.dart';
 
 import '../../factory/simulation_manager_factory.dart';
 
